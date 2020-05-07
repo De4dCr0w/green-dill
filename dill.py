@@ -118,6 +118,7 @@ def get_struct_offset(struct, field, user=1):
     return offset
 
 
+
 def recursion(fields, level):
     for f in fields:
         if f.name == None:
@@ -189,8 +190,6 @@ def get_node_partial_page(node_page_partial_next, node_page_partial_prev, offset
         next = next_lru - 0x8
         next_page = get_ptr_obj(next, 'page')
         page_num += 1
-        if page_num > 2:
-            break
 
 def get_kmem_cache(kmem_cache_name):
 
@@ -260,7 +259,7 @@ def get_kmem_cache(kmem_cache_name):
             node_page_full_next = vtoint(cache_node['full']['next'])
             node_page_full_prev = vtoint(cache_node['full']['prev'])
             if node_page_full_next == node_page_full_prev:
-                cprint("cache_node full page", " -> ", '0x0 ' , ptrtohex(node_page_full_next), 'yellow')
+                cprint("cache_node full page", " -> ", '0x0 ', 'yellow')
             else:
                 cprint("cache_node full page", " -> ", node_page_partial_next , 'red')
 
@@ -377,7 +376,7 @@ class dill(gdb.Command):
                     kmalloc_slab_BP('kmalloc_slab', internal=True)
                     kmalloc_BP('__kmalloc', internal=True)
                     kfree_BP('kfree', internal=True)
-                    kmem_cache_free_BP('kmem_cache_free',internal=True)
+                    #kmem_cache_free_BP('kmem_cache_free',internal=True)
                 elif args[0] == 'on':
                     BP_flag = 1
                 elif args[0] == 'off':
