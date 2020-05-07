@@ -87,6 +87,8 @@ kmalloc分配内存顺序如下：kmem_cache_cpu freelist -> kmem_cache_cpu part
 
 如果前一个没有空闲的object，依次找下一个。
 
+目前实验环境下插件可以正常运行，但跟踪复杂程序时，在释放的地方下断点容易崩，后面再慢慢完善。
+
 ### 参考链接
 
 https://github.com/PaoloMonti42/salt/tree/master/docs  
